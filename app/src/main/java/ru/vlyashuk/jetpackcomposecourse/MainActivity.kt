@@ -32,32 +32,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun TimesTable() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        for (i in 1 until 10) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            ) {
-                for (j in 1 until 10) {
-                    val backgroundColor = if ((j + i) % 2 == 0) Color.Yellow else Color.White
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .background(backgroundColor)
-                            .weight(1f)
-                            .border(width = 1.dp, color = Color.Black),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "${j * i}")
-                    }
-                }
-            }
-        }
-    }
-}
