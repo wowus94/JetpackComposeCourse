@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JetpackComposeCourse</string>
+    <string name="post_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae tortor sed magna auctor pretium a id risus. Praesent ut tortor tincidunt leo dictum sollicitudin vel non justo.</string>
 </resources>
