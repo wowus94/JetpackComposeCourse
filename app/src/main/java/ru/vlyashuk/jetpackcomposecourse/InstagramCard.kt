@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,8 +32,8 @@ fun ProfileCard() {
             .height(300.dp)
             .padding(8.dp),
         shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
-        colors = CardDefaults.cardColors(Color.White),
-        border = BorderStroke(1.dp, color = Color.Black)
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.background),
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.onBackground)
     ) {
 
         Row(
