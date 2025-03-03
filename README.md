@@ -2,6 +2,7 @@
 
 # 03.03.2025
 - практика State в BottomNavigationBar
+- практика FAB и SnackBar
 
 # 27.02.2025
 - практика TopAppBar, Scaffold, BottomNavigationMenu
