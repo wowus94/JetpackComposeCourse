@@ -1,5 +1,8 @@
 Приложение согласно курсу Jetpack Compose полный курс
 
+# 03.03.2025
+- практика State в BottomNavigationBar
+
 # 27.02.2025
 - практика TopAppBar, Scaffold, BottomNavigationMenu
 
