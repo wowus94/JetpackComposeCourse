@@ -19,9 +19,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -85,7 +84,7 @@ fun ProfileCard(
             modifier = Modifier.padding(16.dp),
             fontFamily = FontFamily.Serif
         )
-        FollowButton(isFollowed = isFollowed.value) {
+        FollowButton(isFollowed = isFollowed) {
             viewModel.changeFollowingStatus()
         }
     }
@@ -93,7 +92,7 @@ fun ProfileCard(
 
 @Composable
 private fun FollowButton(
-    isFollowed: Boolean,
+    isFollowed: State<Boolean>,
     clickListener: () -> Unit
 ) {
     Button(
@@ -102,14 +101,14 @@ private fun FollowButton(
         },
         modifier = Modifier.padding(16.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isFollowed) {
+            containerColor = if (isFollowed.value) {
                 MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
             } else {
                 MaterialTheme.colorScheme.primary
             }
         )
     ) {
-        val text = if (isFollowed) {
+        val text = if (isFollowed.value) {
             "Unfollow"
         } else {
             "Follow"

@@ -2,6 +2,7 @@
 
 # 04.04.2025
 - добавление ViewModel в InstagramCard
+- делегаты практика
 
 # 03.03.2025
 - практика State в BottomNavigationBar
