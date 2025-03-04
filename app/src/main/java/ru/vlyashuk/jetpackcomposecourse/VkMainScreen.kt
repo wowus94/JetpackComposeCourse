@@ -58,7 +58,7 @@ fun VkMainScreen() {
         },
         bottomBar = {
             NavigationBar(
-                containerColor = Color.Gray
+                containerColor = MaterialTheme.colorScheme.background
             ) {
                 val selectedItemPosition = remember {
                     mutableIntStateOf(0)

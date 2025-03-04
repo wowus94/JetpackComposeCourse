@@ -1,5 +1,8 @@
 Приложение согласно курсу Jetpack Compose полный курс
 
+# 04.04.2025
+- добавление ViewModel в InstagramCard
+
 # 03.03.2025
 - практика State в BottomNavigationBar
 - практика FAB и SnackBar
