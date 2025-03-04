@@ -14,8 +14,6 @@ import ru.vlyashuk.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         setContent {
             JetpackComposeCourseTheme {
                 Box(
@@ -23,7 +21,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    ProfileCard(viewModel)
+                   VkMainScreen()
                 }
             }
         }

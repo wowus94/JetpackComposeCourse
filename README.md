@@ -3,6 +3,7 @@
 # 04.04.2025
 - добавление ViewModel в InstagramCard
 - делегаты практика
+- заполнение данных экрана VkMainScreen через data class
 
 # 03.03.2025
 - практика State в BottomNavigationBar

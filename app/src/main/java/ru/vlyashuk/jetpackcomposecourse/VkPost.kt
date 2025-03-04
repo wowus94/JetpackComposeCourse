@@ -31,37 +31,47 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.vlyashuk.jetpackcomposecourse.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.domain.StatisticType
+import ru.vlyashuk.jetpackcomposecourse.domain.StatisticItem
 
-@Preview
 @Composable
-fun VkPostCard() {
+fun VkPostCard(
+    modifier: Modifier = Modifier,
+    feedPost: FeedPost
+) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
         elevation = CardDefaults.cardElevation(4.dp),
         border = BorderStroke(0.5.dp, Color.Gray),
         shape = RoundedCornerShape(4.dp)
     ) {
-        PostTopBar()
+        PostTopBar(
+            feedPost = feedPost
+        )
         Text(
-            text = stringResource(R.string.post_text),
+            text = feedPost.contentText,
             modifier = Modifier.padding(8.dp)
         )
         Image(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(300.dp)
                 .padding(start = 8.dp, end = 8.dp),
             contentScale = ContentScale.FillWidth,
-            painter = painterResource(id = R.drawable.image_post_content), contentDescription = ""
+            painter = painterResource(id = feedPost.contentImageResId), contentDescription = ""
         )
         Spacer(modifier = Modifier.height(8.dp))
-        PostBottomBar()
+        PostBottomBar(statistics = feedPost.statistics)
     }
 }
 
 @Composable
-private fun PostTopBar() {
+private fun PostTopBar(
+    feedPost: FeedPost
+) {
     Row(
         modifier = Modifier.padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -71,7 +81,7 @@ private fun PostTopBar() {
                 .size(50.dp)
                 .clip(shape = CircleShape),
             contentScale = ContentScale.Inside,
-            painter = painterResource(id = R.drawable.image_avatar), contentDescription = ""
+            painter = painterResource(id = feedPost.avatarResId), contentDescription = ""
         )
         Column(
             modifier = Modifier
@@ -79,12 +89,12 @@ private fun PostTopBar() {
                 .weight(1f)
         ) {
             Text(
-                text = "Подслушано у программистов",
+                text = feedPost.communityName,
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "14:00",
+                text = feedPost.publicationDate,
                 color = Color.Gray
             )
         }
@@ -97,22 +107,32 @@ private fun PostTopBar() {
 }
 
 @Composable
-fun PostBottomBar() {
+fun PostBottomBar(
+    statistics: List<StatisticItem>
+) {
     Row(
         modifier = Modifier.padding(8.dp)
     ) {
+        val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
         Row(modifier = Modifier.weight(1f)) {
-            TextIcon("111", R.drawable.ic_views_count)
+            TextIcon(viewsItem.count.toString(), R.drawable.ic_views_count)
         }
         Row(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            TextIcon("222", R.drawable.ic_share)
-            TextIcon("333", R.drawable.ic_comment)
-            TextIcon("444", R.drawable.ic_like)
+            val sharesItem = statistics.getItemByType(StatisticType.SHARES)
+            TextIcon(sharesItem.count.toString(), R.drawable.ic_share)
+            val commentsItem = statistics.getItemByType(StatisticType.COMMENTS)
+            TextIcon(commentsItem.count.toString(), R.drawable.ic_comment)
+            val likesItem = statistics.getItemByType(StatisticType.LIKES)
+            TextIcon(likesItem.count.toString(), R.drawable.ic_like)
         }
     }
+}
+
+private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticItem {
+    return this.find { it.type == type } ?: throw IllegalStateException("Type unknown")
 }
 
 @Composable

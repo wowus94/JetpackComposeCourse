@@ -1,5 +1,6 @@
 package ru.vlyashuk.jetpackcomposecourse
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
@@ -24,38 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import ru.vlyashuk.jetpackcomposecourse.domain.FeedPost
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
 fun VkMainScreen() {
-    val snackbarHostState = SnackbarHostState()
-    val scope = rememberCoroutineScope()
-    val fabIsVisible = remember {
-        mutableStateOf(true)
-    }
     Scaffold(
-        snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState)
-        },
-        floatingActionButton = {
-            if (fabIsVisible.value) {
-                FloatingActionButton(
-                    onClick = {
-                        scope.launch {
-                            val action = snackbarHostState.showSnackbar(
-                                message = "This is snackbar",
-                                actionLabel = "Hide is FAB",
-                                duration = SnackbarDuration.Long
-                            )
-                            if (action == SnackbarResult.ActionPerformed) {
-                                fabIsVisible.value = false
-                            }
-                        }
-                    }
-                ) { Icon(Icons.Filled.Settings, contentDescription = null) }
-            }
-        },
         bottomBar = {
             NavigationBar(
                 containerColor = MaterialTheme.colorScheme.background
@@ -91,9 +69,9 @@ fun VkMainScreen() {
             }
         }
     ) {
-        Text(
-            modifier = Modifier.padding(it),
-            text = "This vk screen"
+        VkPostCard(
+            modifier = Modifier.padding(8.dp),
+            feedPost = FeedPost()
         )
     }
 }
