@@ -2,6 +2,7 @@ package ru.vlyashuk.jetpackcomposecourse
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,18 +28,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.vlyashuk.jetpackcomposecourse.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.domain.StatisticType
 import ru.vlyashuk.jetpackcomposecourse.domain.StatisticItem
+import ru.vlyashuk.jetpackcomposecourse.domain.StatisticType
 
 @Composable
 fun VkPostCard(
     modifier: Modifier = Modifier,
-    feedPost: FeedPost
+    feedPost: FeedPost,
+    onStatisticItemClickListener: (StatisticItem) -> Unit
 ) {
     Card(
         modifier = modifier
@@ -64,7 +64,10 @@ fun VkPostCard(
             painter = painterResource(id = feedPost.contentImageResId), contentDescription = ""
         )
         Spacer(modifier = Modifier.height(8.dp))
-        PostBottomBar(statistics = feedPost.statistics)
+        PostBottomBar(
+            statistics = feedPost.statistics,
+            onItemClickListener = onStatisticItemClickListener
+        )
     }
 }
 
@@ -108,25 +111,47 @@ private fun PostTopBar(
 
 @Composable
 fun PostBottomBar(
-    statistics: List<StatisticItem>
+    statistics: List<StatisticItem>,
+    onItemClickListener: (StatisticItem) -> Unit
 ) {
     Row(
         modifier = Modifier.padding(8.dp)
     ) {
         val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
         Row(modifier = Modifier.weight(1f)) {
-            TextIcon(viewsItem.count.toString(), R.drawable.ic_views_count)
+            TextIcon(
+                text = viewsItem.count.toString(),
+                iconId = R.drawable.ic_views_count,
+                onItemClickListener = {
+                    onItemClickListener(viewsItem)
+                }
+            )
         }
         Row(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             val sharesItem = statistics.getItemByType(StatisticType.SHARES)
-            TextIcon(sharesItem.count.toString(), R.drawable.ic_share)
+            TextIcon(
+                text = sharesItem.count.toString(),
+                iconId = R.drawable.ic_share,
+                onItemClickListener = {
+                    onItemClickListener(sharesItem)
+                })
             val commentsItem = statistics.getItemByType(StatisticType.COMMENTS)
-            TextIcon(commentsItem.count.toString(), R.drawable.ic_comment)
+            TextIcon(
+                text = commentsItem.count.toString(),
+                iconId = R.drawable.ic_comment,
+                onItemClickListener = {
+                    onItemClickListener(commentsItem)
+                })
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
-            TextIcon(likesItem.count.toString(), R.drawable.ic_like)
+            TextIcon(
+                text = likesItem.count.toString(),
+                iconId = R.drawable.ic_like,
+                onItemClickListener = {
+                    onItemClickListener(likesItem)
+                })
         }
     }
 }
@@ -138,9 +163,13 @@ private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticIte
 @Composable
 private fun TextIcon(
     text: String,
-    iconId: Int
+    iconId: Int,
+    onItemClickListener: () -> Unit
 ) {
     Row(
+        modifier = Modifier.clickable {
+            onItemClickListener()
+        },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
