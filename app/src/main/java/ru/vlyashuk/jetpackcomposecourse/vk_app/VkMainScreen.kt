@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -19,14 +20,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.AppNavGraph
+import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.NavigationState
 import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.Screen
+import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.rememberNavigationState
 import ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.HomeScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun VkMainScreen(viewModel: VkViewModel) {
 
-    val navHostController = rememberNavController()
+    val navigationState = rememberNavigationState()
 
     Scaffold(
         bottomBar = {
@@ -34,7 +37,7 @@ fun VkMainScreen(viewModel: VkViewModel) {
                 containerColor = MaterialTheme.colorScheme.background
             ) {
 
-                val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+                val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
 
                 val items =
@@ -47,13 +50,7 @@ fun VkMainScreen(viewModel: VkViewModel) {
                     NavigationBarItem(
                         selected = currentRoute == item.screen.route,
                         onClick = {
-                            navHostController.navigate(item.screen.route) {
-                                popUpTo(Screen.NewsFeed.route) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+                            navigationState.navigateTo(item.screen.route)
                         },
                         icon = {
                             Icon(item.icon, contentDescription = null)
@@ -74,7 +71,7 @@ fun VkMainScreen(viewModel: VkViewModel) {
         }
     ) { paddingValues ->
         AppNavGraph(
-            navHostController = navHostController,
+            navHostController = navigationState.navHostController,
             homeScreenContent = {
                 HomeScreen(
                     viewModel = viewModel,
