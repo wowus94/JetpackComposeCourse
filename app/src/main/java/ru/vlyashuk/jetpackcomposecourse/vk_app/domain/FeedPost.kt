@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.domain
+package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
 
 import ru.vlyashuk.jetpackcomposecourse.R
 

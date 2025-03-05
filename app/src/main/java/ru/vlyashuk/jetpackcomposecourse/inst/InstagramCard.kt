@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse
+package ru.vlyashuk.jetpackcomposecourse.inst
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.vlyashuk.jetpackcomposecourse.R
 
 @Composable
 fun ProfileCard(

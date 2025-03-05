@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.domain
+package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
 
 data class StatisticItem(
     val type: StatisticType,

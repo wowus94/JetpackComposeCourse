@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse
+package ru.vlyashuk.jetpackcomposecourse.other
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

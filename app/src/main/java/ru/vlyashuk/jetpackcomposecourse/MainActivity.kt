@@ -22,7 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.vlyashuk.jetpackcomposecourse.inst.MainViewModel
+import ru.vlyashuk.jetpackcomposecourse.inst.ProfileCard
 import ru.vlyashuk.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
+import ru.vlyashuk.jetpackcomposecourse.vk_app.VkViewModel
 
 class MainActivity : ComponentActivity() {
 

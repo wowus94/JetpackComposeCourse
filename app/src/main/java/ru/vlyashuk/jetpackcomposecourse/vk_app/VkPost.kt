@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse
+package ru.vlyashuk.jetpackcomposecourse.vk_app
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -30,9 +30,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import ru.vlyashuk.jetpackcomposecourse.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.domain.StatisticItem
-import ru.vlyashuk.jetpackcomposecourse.domain.StatisticType
+import ru.vlyashuk.jetpackcomposecourse.R
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticType
 
 @Composable
 fun VkPostCard(

@@ -1,10 +1,10 @@
-package ru.vlyashuk.jetpackcomposecourse
+package ru.vlyashuk.jetpackcomposecourse.vk_app
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.vlyashuk.jetpackcomposecourse.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.domain.StatisticItem
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
 
 class VkViewModel : ViewModel() {
 
