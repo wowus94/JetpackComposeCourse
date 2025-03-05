@@ -51,6 +51,10 @@ android {
 }
 
 dependencies {
+
+    //Navigation Jetpack Compose integration
+    implementation(libs.navigation.compose)
+
     implementation(libs.compose.livedata)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
