@@ -14,6 +14,13 @@ class VkViewModel : ViewModel() {
         }
     }
 
+    private val _selectedNavItem = MutableLiveData<NavigationItem>(NavigationItem.Home)
+    val selectedNavItem: LiveData<NavigationItem> = _selectedNavItem
+
+    fun selectNavItem(item: NavigationItem) {
+        _selectedNavItem.value = item
+    }
+
     private val _feedPosts = MutableLiveData<List<FeedPost>>(sourceList)
     val feedPosts: LiveData<List<FeedPost>> = _feedPosts
 

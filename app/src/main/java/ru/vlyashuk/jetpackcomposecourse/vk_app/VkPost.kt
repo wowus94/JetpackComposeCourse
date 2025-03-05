@@ -57,6 +57,7 @@ fun VkPostCard(
         )
         Text(
             text = feedPost.contentText,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(8.dp)
         )
         Image(
@@ -100,12 +101,13 @@ private fun PostTopBar(
         ) {
             Text(
                 text = feedPost.communityName,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = feedPost.publicationDate,
-                color = Color.Gray
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
         Icon(
