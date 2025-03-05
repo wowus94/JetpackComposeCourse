@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import ru.vlyashuk.jetpackcomposecourse.inst.MainViewModel
 import ru.vlyashuk.jetpackcomposecourse.inst.ProfileCard
 import ru.vlyashuk.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
+import ru.vlyashuk.jetpackcomposecourse.vk_app.VkMainScreen
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkViewModel
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +36,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TestLazyColumn()
+            JetpackComposeCourseTheme {
+                VkMainScreen(viewModel)
+            }
         }
     }
 
