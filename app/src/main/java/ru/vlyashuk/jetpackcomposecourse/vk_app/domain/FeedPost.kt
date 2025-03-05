@@ -3,6 +3,7 @@ package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
 import ru.vlyashuk.jetpackcomposecourse.R
 
 data class FeedPost(
+    val id: Int = 0,
     val communityName: String = "Подслушано у программистов",
     val publicationDate: String = "14:00",
     val avatarResId: Int = R.drawable.image_avatar,
