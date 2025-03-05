@@ -6,6 +6,7 @@
 - добавление навигации без библиотек
 - подключение библиотеки Jetpack Compose Navigation
 - настройка состояний экранов при переходах
+- рефакторинг навигации. RememberNavigationState
 
 # 04.04.2025
 - добавление ViewModel в InstagramCard
