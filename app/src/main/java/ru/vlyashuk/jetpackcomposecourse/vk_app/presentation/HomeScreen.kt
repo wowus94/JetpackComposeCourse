@@ -1,5 +1,6 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
 
+import android.graphics.Insets.add
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkPostCard
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkViewModel
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
 
 @Composable
 fun HomeScreen(
@@ -22,7 +24,18 @@ fun HomeScreen(
 ) {
     val feedPosts = viewModel.feedPosts.observeAsState(listOf())
 
-    LazyColumn(
+    if (feedPosts.value.isNotEmpty()) {
+        val comments = mutableListOf<PostComment>().apply {
+            repeat(25) {
+                add(
+                    PostComment(id = it)
+                )
+            }
+        }
+        CommentsScreen(feedPost = feedPosts.value.get(0), comments = comments)
+    }
+
+    /*LazyColumn(
         modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(
             top = 16.dp,
@@ -70,5 +83,5 @@ fun HomeScreen(
                 )
             }
         }
-    }
+    }*/
 }
