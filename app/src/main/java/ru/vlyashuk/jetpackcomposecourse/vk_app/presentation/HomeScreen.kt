@@ -1,6 +1,6 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
 
-import android.graphics.Insets.add
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -13,29 +13,53 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.vlyashuk.jetpackcomposecourse.vk_app.HomeScreenState
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkPostCard
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkViewModel
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 
 @Composable
 fun HomeScreen(
     viewModel: VkViewModel,
     paddingValues: PaddingValues
 ) {
-    val feedPosts = viewModel.feedPosts.observeAsState(listOf())
+    val screenState = viewModel.screenState.observeAsState(HomeScreenState.Initial)
 
-    if (feedPosts.value.isNotEmpty()) {
-        val comments = mutableListOf<PostComment>().apply {
-            repeat(25) {
-                add(
-                    PostComment(id = it)
-                )
+    when (val currentState = screenState.value) {
+        is HomeScreenState.Posts -> {
+            FeedPosts(
+                viewModel = viewModel,
+                paddingValues = paddingValues,
+                posts = currentState.posts
+            )
+        }
+
+        is HomeScreenState.Comments -> {
+            CommentsScreen(
+                feedPost = currentState.feedPost,
+                comments = currentState.comments,
+                onBackPressed = {
+                    viewModel.closeComments()
+                }
+            )
+            BackHandler {
+                viewModel.closeComments()
             }
         }
-        CommentsScreen(feedPost = feedPosts.value.get(0), comments = comments)
-    }
 
-    /*LazyColumn(
+        HomeScreenState.Initial -> {
+
+        }
+    }
+}
+
+@Composable
+private fun FeedPosts(
+    posts: List<FeedPost>,
+    viewModel: VkViewModel,
+    paddingValues: PaddingValues
+) {
+    LazyColumn(
         modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(
             top = 16.dp,
@@ -46,7 +70,7 @@ fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
-            items = feedPosts.value,
+            items = posts,
             key = { it.id }
         ) { feedPost ->
             val dismissState = rememberSwipeToDismissBoxState(
@@ -72,7 +96,7 @@ fun HomeScreen(
                         viewModel.updateCount(feedPost, statisticItem)
                     },
                     onCommentClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
+                        viewModel.showComments(feedPost)
                     },
                     onShareClickListener = { statisticItem ->
                         viewModel.updateCount(feedPost, statisticItem)
@@ -83,5 +107,5 @@ fun HomeScreen(
                 )
             }
         }
-    }*/
+    }
 }
