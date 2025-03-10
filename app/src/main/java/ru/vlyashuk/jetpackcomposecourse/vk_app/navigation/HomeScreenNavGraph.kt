@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.navArgument
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 
 fun NavGraphBuilder.homeScreenNavGraph(
@@ -17,9 +18,19 @@ fun NavGraphBuilder.homeScreenNavGraph(
         composable(Screen.NewsFeed.route) {
             newsFeedScreenContent()
         }
-        composable(Screen.Comments.route) {
-            val feedPostId = it.arguments?.getInt(Screen.KEY_FEED_POST_ID) ?: 0
-            commentsScreenContent(FeedPost(id = feedPostId))
+        composable(
+            route = Screen.Comments.route,
+            arguments = listOf(
+                navArgument(Screen.KEY_FEED_POST) {
+                    type = FeedPost.NavigationType
+                }
+            )
+        ) {
+            val feedPost = it.arguments?.getParcelable<FeedPost>(Screen.KEY_FEED_POST)
+                ?: throw RuntimeException("Args is null")
+            commentsScreenContent(
+                feedPost
+            )
         }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -54,6 +55,9 @@ dependencies {
 
     //Navigation Jetpack Compose integration
     implementation(libs.navigation.compose)
+
+    //Gson
+    implementation(libs.gson)
 
     implementation(libs.compose.livedata)
     implementation(libs.androidx.core.ktx)
