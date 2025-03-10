@@ -2,6 +2,7 @@
 
 # 10.03.2025
 - создание ViewModels для экранов HomeScreen и CommentsScreen
+- настройка ViewModelFactory
 
 # 09.03.2025
 - настройка навигации на экран комментариев
