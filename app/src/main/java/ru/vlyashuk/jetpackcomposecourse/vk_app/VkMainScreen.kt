@@ -32,9 +32,6 @@ import ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.HomeScreen
 fun VkMainScreen() {
 
     val navigationState = rememberNavigationState()
-    val commentToPost: MutableState<FeedPost?> = remember {
-        mutableStateOf(null)
-    }
 
     Scaffold(
         bottomBar = {
@@ -87,17 +84,16 @@ fun VkMainScreen() {
                 HomeScreen(
                     paddingValues = paddingValues,
                     onCommentsClickListener = {
-                        commentToPost.value = it
-                        navigationState.navigateToComments()
+                        navigationState.navigateToComments(it)
                     }
                 )
             },
-            commentsScreenContent = {
+            commentsScreenContent = { feedPost ->
                 CommentsScreen(
                     onBackPressed = {
                         navigationState.navHostController.popBackStack()
                     },
-                    feedPost = commentToPost.value!!
+                    feedPost = feedPost
                 )
             },
             favouriteScreenContent = { TextCounter(name = "Favourite") },
