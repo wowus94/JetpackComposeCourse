@@ -20,8 +20,8 @@ fun AppNavGraph(
         startDestination = Screen.Home.route
     ) {
         homeScreenNavGraph(
-            newsFeedScreenContent,
-            commentsScreenContent
+            newsFeedScreenContent = newsFeedScreenContent,
+            commentsScreenContent = commentsScreenContent
         )
         composable(Screen.Favourite.route) {
             favouriteScreenContent()
