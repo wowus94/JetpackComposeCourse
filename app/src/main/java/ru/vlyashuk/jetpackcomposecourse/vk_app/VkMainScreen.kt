@@ -18,9 +18,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.AppNavGraph
+import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.Screen
 import ru.vlyashuk.jetpackcomposecourse.vk_app.navigation.rememberNavigationState
 import ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.CommentsScreen
 import ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.HomeScreen
@@ -41,7 +43,6 @@ fun VkMainScreen() {
             ) {
 
                 val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
 
                 val items =
                     listOf(
@@ -50,10 +51,17 @@ fun VkMainScreen() {
                         NavigationItem.Profile
                     )
                 items.forEach { item ->
+
+                    val selected = navBackStackEntry?.destination?.hierarchy?.any {
+                        it.route == item.screen.route
+                    } ?: false
+
                     NavigationBarItem(
-                        selected = currentRoute == item.screen.route,
+                        selected = selected,
                         onClick = {
-                            navigationState.navigateTo(item.screen.route)
+                            if (!selected) {
+                                navigationState.navigateTo(item.screen.route)
+                            }
                         },
                         icon = {
                             Icon(item.icon, contentDescription = null)
@@ -75,22 +83,22 @@ fun VkMainScreen() {
     ) { paddingValues ->
         AppNavGraph(
             navHostController = navigationState.navHostController,
-            homeScreenContent = {
-                if (commentToPost.value == null) {
-                    HomeScreen(
-                        paddingValues = paddingValues,
-                        onCommentsClickListener = {
-                            commentToPost.value = it
-                        }
-                    )
-                } else {
-                    CommentsScreen(
-                        onBackPressed = {
-                            commentToPost.value = null
-                        },
-                        feedPost = commentToPost.value!!
-                    )
-                }
+            newsFeedScreenContent = {
+                HomeScreen(
+                    paddingValues = paddingValues,
+                    onCommentsClickListener = {
+                        commentToPost.value = it
+                        navigationState.navigateToComments()
+                    }
+                )
+            },
+            commentsScreenContent = {
+                CommentsScreen(
+                    onBackPressed = {
+                        navigationState.navHostController.popBackStack()
+                    },
+                    feedPost = commentToPost.value!!
+                )
             },
             favouriteScreenContent = { TextCounter(name = "Favourite") },
             profileScreenContent = { TextCounter(name = "Profile") }
