@@ -84,9 +84,12 @@ fun VkMainScreen() {
                         }
                     )
                 } else {
-                    CommentsScreen {
-                        commentToPost.value = null
-                    }
+                    CommentsScreen(
+                        onBackPressed = {
+                            commentToPost.value = null
+                        },
+                        feedPost = commentToPost.value!!
+                    )
                 }
             },
             favouriteScreenContent = { TextCounter(name = "Favourite") },
