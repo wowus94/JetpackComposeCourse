@@ -4,6 +4,7 @@
 - создание ViewModels для экранов HomeScreen и CommentsScreen
 - настройка ViewModelFactory
 - исправление Nested Navigation Graph
+- настройка проекта для передачи id поста
 
 # 09.03.2025
 - настройка навигации на экран комментариев
