@@ -1,6 +1,5 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
 
-import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,47 +20,55 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import androidx.lifecycle.viewmodel.compose.viewModel
+import ru.vlyashuk.jetpackcomposecourse.vk_app.CommentsScreenState
+import ru.vlyashuk.jetpackcomposecourse.vk_app.CommentsViewModel
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentsScreen(
-    feedPost: FeedPost,
-    comments: List<PostComment>,
     onBackPressed: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Comments for FeedPost Id: ${feedPost.id}")
-                },
-                navigationIcon = {
-                    IconButton(onClick = {onBackPressed()}) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = null
-                        )
+    val viewModel: CommentsViewModel = viewModel()
+    val screenState = viewModel.screenState.observeAsState(initial = CommentsScreenState.Initial)
+
+    val currentState = screenState.value
+    if (currentState is CommentsScreenState.Comments) {
+
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = "Comments for FeedPost Id: ${currentState.feedPost.id}")
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { onBackPressed() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = null
+                            )
+                        }
                     }
-                }
-            )
-        }
-    ) {
-        LazyColumn(
-            modifier = Modifier.padding(paddingValues = it)
+                )
+            }
         ) {
-            items(
-                items = comments,
-                key = { it.id }
-            ) { comment ->
-                CommentItem(comment = comment)
+            LazyColumn(
+                modifier = Modifier.padding(paddingValues = it)
+            ) {
+                items(
+                    items = currentState.comments,
+                    key = { it.id }
+                ) { comment ->
+                    CommentItem(comment = comment)
+                }
             }
         }
     }
