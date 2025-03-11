@@ -53,6 +53,10 @@ android {
 
 dependencies {
 
+    //vk
+    implementation(libs.vk.core)
+    implementation(libs.vk.api)
+
     //Coil
     implementation(libs.coil)
 

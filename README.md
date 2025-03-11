@@ -2,6 +2,7 @@
 
 # 11.03.2025
 - практика ActivityResultApi
+- подключение VK SDK
 
 # 10.03.2025
 - создание ViewModels для экранов HomeScreen и CommentsScreen
