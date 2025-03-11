@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.comments
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -28,9 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.vlyashuk.jetpackcomposecourse.vk_app.CommentsScreenState
-import ru.vlyashuk.jetpackcomposecourse.vk_app.CommentsViewModel
-import ru.vlyashuk.jetpackcomposecourse.vk_app.CommentsViewModelFactory
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
 

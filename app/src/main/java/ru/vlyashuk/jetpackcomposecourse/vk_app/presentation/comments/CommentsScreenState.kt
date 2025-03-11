@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.comments
 
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment

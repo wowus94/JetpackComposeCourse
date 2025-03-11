@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app
+package ru.vlyashuk.jetpackcomposecourse.other
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult

@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.news
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,22 +13,19 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.vlyashuk.jetpackcomposecourse.vk_app.FeedPostsScreenState
-import ru.vlyashuk.jetpackcomposecourse.vk_app.NewsFeedViewModel
-import ru.vlyashuk.jetpackcomposecourse.vk_app.VkPostCard
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 
 @Composable
-fun HomeScreen(
+fun NewsFeedScreen(
     paddingValues: PaddingValues,
     onCommentsClickListener: (FeedPost) -> Unit
 ) {
     val viewModel: NewsFeedViewModel = viewModel()
 
-    val screenState = viewModel.screenState.observeAsState(FeedPostsScreenState.Initial)
+    val screenState = viewModel.screenState.observeAsState(NewsFeedScreenState.Initial)
 
     when (val currentState = screenState.value) {
-        is FeedPostsScreenState.Posts -> {
+        is NewsFeedScreenState.Posts -> {
             FeedPosts(
                 viewModel = viewModel,
                 paddingValues = paddingValues,
@@ -37,7 +34,7 @@ fun HomeScreen(
             )
         }
 
-        FeedPostsScreenState.Initial -> {
+        NewsFeedScreenState.Initial -> {
 
         }
     }
