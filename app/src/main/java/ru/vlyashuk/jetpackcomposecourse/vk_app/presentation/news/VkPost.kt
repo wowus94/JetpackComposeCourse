@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.news
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

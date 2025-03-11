@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.main
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

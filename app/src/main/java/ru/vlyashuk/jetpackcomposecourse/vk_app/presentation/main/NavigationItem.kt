@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app
+package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.main
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
