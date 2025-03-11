@@ -53,12 +53,22 @@ android {
 
 dependencies {
 
+    //Retrofit
+    implementation(libs.retrofit)
+
+    //OkHttpClient
+    implementation(libs.okHttpClient)
+    //HttpLoggingInterceptor
+    implementation(libs.httpLoggingInterceptor)
+
     //vk
     implementation(libs.vk.core)
     implementation(libs.vk.api)
 
     //Coil
     implementation(libs.coil)
+    //Coil network
+    implementation(libs.coil.network)
 
     //Navigation Jetpack Compose integration
     implementation(libs.navigation.compose)

@@ -66,7 +66,7 @@ fun VkPostCard(
                 .height(300.dp)
                 .padding(start = 8.dp, end = 8.dp),
             contentScale = ContentScale.FillWidth,
-            painter = painterResource(id = feedPost.contentImageResId), contentDescription = ""
+            painter = painterResource(id = feedPost.contentImageUrl), contentDescription = ""
         )
         Spacer(modifier = Modifier.height(8.dp))
         PostBottomBar(
@@ -92,7 +92,7 @@ private fun PostTopBar(
                 .size(50.dp)
                 .clip(shape = CircleShape),
             contentScale = ContentScale.Inside,
-            painter = painterResource(id = feedPost.avatarResId), contentDescription = ""
+            painter = painterResource(id = feedPost.communityImageUrl), contentDescription = ""
         )
         Column(
             modifier = Modifier
