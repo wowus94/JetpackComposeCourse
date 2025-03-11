@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import ru.vlyashuk.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
+import ru.vlyashuk.jetpackcomposecourse.vk_app.ActivityResultTest
 import ru.vlyashuk.jetpackcomposecourse.vk_app.VkMainScreen
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeCourseTheme {
-                VkMainScreen()
+                ActivityResultTest()
             }
         }
     }

@@ -1,5 +1,8 @@
 Приложение согласно курсу Jetpack Compose полный курс
 
+# 11.03.2025
+- практика ActivityResultApi
+
 # 10.03.2025
 - создание ViewModels для экранов HomeScreen и CommentsScreen
 - настройка ViewModelFactory

@@ -11,6 +11,7 @@ composeBom = "2025.02.00"
 compose_livedata_version = "1.7.8"
 navigation_version = "2.8.6"
 gson_version="2.11.0"
+coil_version="3.0.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +34,8 @@ compose-livedata = { group = "androidx.compose.runtime", name = "runtime-livedat
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation_version" }
 #Gson
 gson = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref ="gson_version"}
+#Coil
+coil = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref ="coil_version"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
