@@ -1,7 +1,6 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.news
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -30,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import ru.vlyashuk.jetpackcomposecourse.R
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
@@ -60,13 +61,14 @@ fun VkPostCard(
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(8.dp)
         )
-        Image(
+        AsyncImage(
+            model = feedPost.contentImageUrl,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+                .wrapContentHeight()
                 .padding(start = 8.dp, end = 8.dp),
+            contentDescription = null,
             contentScale = ContentScale.FillWidth,
-            painter = painterResource(id = feedPost.contentImageUrl), contentDescription = ""
         )
         Spacer(modifier = Modifier.height(8.dp))
         PostBottomBar(
@@ -87,12 +89,13 @@ private fun PostTopBar(
         modifier = Modifier.padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
+        AsyncImage(
+            model = feedPost.communityImageUrl,
             modifier = Modifier
                 .size(50.dp)
                 .clip(shape = CircleShape),
             contentScale = ContentScale.Inside,
-            painter = painterResource(id = feedPost.communityImageUrl), contentDescription = ""
+            contentDescription = ""
         )
         Column(
             modifier = Modifier
