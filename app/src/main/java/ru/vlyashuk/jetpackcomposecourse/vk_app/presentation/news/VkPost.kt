@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import ru.vlyashuk.jetpackcomposecourse.R
+import ru.vlyashuk.jetpackcomposecourse.ui.theme.DarkRed
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticType
@@ -76,7 +77,8 @@ fun VkPostCard(
             onViewsClickListener = onViewsClickListener,
             onShareClickListener = onShareClickListener,
             onCommentClickListener = onCommentClickListener,
-            onLikeClickListener = onLikeClickListener
+            onLikeClickListener = onLikeClickListener,
+            isFavourite = feedPost.isFavourite
         )
     }
 }
@@ -127,7 +129,8 @@ fun PostBottomBar(
     onViewsClickListener: (StatisticItem) -> Unit,
     onShareClickListener: (StatisticItem) -> Unit,
     onCommentClickListener: (StatisticItem) -> Unit,
-    onLikeClickListener: (StatisticItem) -> Unit
+    onLikeClickListener: (StatisticItem) -> Unit,
+    isFavourite: Boolean
 ) {
     Row(
         modifier = Modifier.padding(8.dp)
@@ -135,7 +138,7 @@ fun PostBottomBar(
         val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
         Row(modifier = Modifier.weight(1f)) {
             TextIcon(
-                text = viewsItem.count.toString(),
+                text = formatStatisticCount(viewsItem.count),
                 iconId = R.drawable.ic_views_count,
                 onItemClickListener = {
                     onViewsClickListener(viewsItem)
@@ -148,26 +151,38 @@ fun PostBottomBar(
         ) {
             val sharesItem = statistics.getItemByType(StatisticType.SHARES)
             TextIcon(
-                text = sharesItem.count.toString(),
+                text = formatStatisticCount(sharesItem.count),
                 iconId = R.drawable.ic_share,
                 onItemClickListener = {
                     onShareClickListener(sharesItem)
                 })
             val commentsItem = statistics.getItemByType(StatisticType.COMMENTS)
             TextIcon(
-                text = commentsItem.count.toString(),
+                text = formatStatisticCount(commentsItem.count),
                 iconId = R.drawable.ic_comment,
                 onItemClickListener = {
                     onCommentClickListener(commentsItem)
                 })
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
             TextIcon(
-                text = likesItem.count.toString(),
-                iconId = R.drawable.ic_like,
+                text = formatStatisticCount(likesItem.count),
+                iconId = if (isFavourite) R.drawable.ic_like_set else R.drawable.ic_like,
                 onItemClickListener = {
                     onLikeClickListener(likesItem)
-                })
+                },
+                tint = if (isFavourite) DarkRed else MaterialTheme.colorScheme.onSecondary
+            )
         }
+    }
+}
+
+private fun formatStatisticCount(count: Int): String {
+    return if (count > 100_00) {
+        String.format("%sK", (count / 1000))
+    } else if (count > 1000) {
+        String.format("%.1fK", (count / 1000f))
+    } else {
+        count.toString()
     }
 }
 
@@ -179,7 +194,8 @@ private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticIte
 private fun TextIcon(
     text: String,
     iconId: Int,
-    onItemClickListener: () -> Unit
+    onItemClickListener: () -> Unit,
+    tint: Color = MaterialTheme.colorScheme.onSecondary
 ) {
     Row(
         modifier = Modifier.clickable {
@@ -188,9 +204,10 @@ private fun TextIcon(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
+            modifier = Modifier.size(20.dp),
             painter = painterResource(iconId),
             contentDescription = "",
-            tint = MaterialTheme.colorScheme.onSecondary
+            tint = tint
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
