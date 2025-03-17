@@ -78,7 +78,7 @@ fun VkPostCard(
             onShareClickListener = onShareClickListener,
             onCommentClickListener = onCommentClickListener,
             onLikeClickListener = onLikeClickListener,
-            isFavourite = feedPost.isFavourite
+            isFavourite = feedPost.isLiked
         )
     }
 }
