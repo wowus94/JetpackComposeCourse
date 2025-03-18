@@ -6,11 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vk.api.sdk.VKPreferencesKeyValueStorage
-import com.vk.api.sdk.auth.VKAccessToken
 import kotlinx.coroutines.launch
-import ru.vlyashuk.jetpackcomposecourse.vk_app.data.mapper.NewsFeedMapper
-import ru.vlyashuk.jetpackcomposecourse.vk_app.data.network.ApiFactory
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.repository.NewsFeedRepository
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
@@ -38,7 +34,7 @@ class NewsFeedViewModel(application: Application) : AndroidViewModel(application
 
     fun changeLikeStatus(feedPost: FeedPost) {
         viewModelScope.launch {
-            repository.addLike(feedPost)
+            repository.changeLikeStatus(feedPost)
             _screenState.value = NewsFeedScreenState.Posts(posts = repository.feedPosts)
         }
     }

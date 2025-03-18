@@ -6,6 +6,7 @@ import com.vk.api.sdk.auth.VKAccessToken
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.mapper.NewsFeedMapper
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.network.ApiFactory
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticType
 
@@ -30,6 +31,15 @@ class NewsFeedRepository(application: Application) {
 
     private fun getAccessToken(): String {
         return token?.accessToken ?: throw IllegalStateException("Token is null")
+    }
+
+    suspend fun getComments(feedPost: FeedPost): List<PostComment> {
+        val comments = apiService.getComments(
+            token = getAccessToken(),
+            ownerId = feedPost.communityId,
+            postId = feedPost.id
+        )
+        return mapper.mapResponseToComments(comments)
     }
 
     suspend fun changeLikeStatus(feedPost: FeedPost) {
