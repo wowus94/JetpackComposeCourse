@@ -3,6 +3,7 @@ package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.news
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ru.vlyashuk.jetpackcomposecourse.ui.theme.DarkBlue
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
 
 @Composable
@@ -42,8 +44,14 @@ fun NewsFeedScreen(
             )
         }
 
-        NewsFeedScreenState.Initial -> {
-
+        NewsFeedScreenState.Initial -> {}
+        NewsFeedScreenState.Loading -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = DarkBlue)
+            }
         }
     }
 }
@@ -89,14 +97,8 @@ private fun FeedPosts(
             ) {
                 VkPostCard(
                     feedPost = feedPost,
-                    onViewsClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
-                    },
                     onCommentClickListener = {
                         onCommentsClickListener(feedPost)
-                    },
-                    onShareClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
                     },
                     onLikeClickListener = { _ ->
                         viewModel.changeLikeStatus(feedPost)
