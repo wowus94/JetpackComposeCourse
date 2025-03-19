@@ -20,7 +20,6 @@ interface ApiService {
         @Query("start_from") startFrom: String
     ): NewsFeedResponseDto
 
-
     @GET("likes.add?v=5.131&type=post")
     suspend fun addLike(
         @Query("access_token") token: String,
@@ -41,4 +40,11 @@ interface ApiService {
         @Query("owner_id") ownerId: Long,
         @Query("post_id") postId: Long
     ): CommentsResponseDto
+
+    @GET("newsfeed.ignoreItem?v=5.131&type=wall")
+    suspend fun ignorePost(
+        @Query("access_token") token: String,
+        @Query("owner_id") ownerId: Long,
+        @Query("post_id") postId: Long
+    )
 }
