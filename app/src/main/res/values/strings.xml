@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">JetpackComposeCourse</string>
-    <integer name="com_vk_sdk_AppId">53248996</integer>
+    <integer name="com_vk_sdk_AppId">53301407</integer>
     <string name="post_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae tortor sed magna auctor pretium a id risus. Praesent ut tortor tincidunt leo dictum sollicitudin vel non justo.</string>
     <string name="navigation_item_main">Главная</string>
     <string name="navigation_item_favourite">Избранное</string>
