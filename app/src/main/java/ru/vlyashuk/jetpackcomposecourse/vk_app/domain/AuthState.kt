@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.main
+package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
 
 sealed class AuthState {
 
