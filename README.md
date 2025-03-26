@@ -2,6 +2,7 @@
 
 # 26.03.2025
 - обработка ошибок (Exception handling)
+- использование coroutine flow в MainViewModel
 
 # 25.03.2025
 - настройка Flow 
