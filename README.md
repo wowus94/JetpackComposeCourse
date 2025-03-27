@@ -2,6 +2,7 @@
 
 # 27.03.2025
 - рефакторинг. Clean Architecture
+- подключение библиотек Dagger2
 
 # 26.03.2025
 - обработка ошибок (Exception handling)

@@ -7,8 +7,9 @@ import kotlinx.coroutines.flow.map
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.repository.NewsFeedRepositoryImpl
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.GetCommentsUseCase
+import javax.inject.Inject
 
-class CommentsViewModel(
+class CommentsViewModel @Inject constructor(
     feedPost: FeedPost,
     application: Application
 ) : ViewModel() {

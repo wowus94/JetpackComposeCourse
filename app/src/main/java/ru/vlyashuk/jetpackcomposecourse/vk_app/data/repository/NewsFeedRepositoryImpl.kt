@@ -22,8 +22,9 @@ import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticItem
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticType
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.repository.NewsFeedRepository
 import ru.vlyashuk.jetpackcomposecourse.vk_app.extensions.mergeWith
+import javax.inject.Inject
 
-class NewsFeedRepositoryImpl(application: Application) : NewsFeedRepository {
+class NewsFeedRepositoryImpl @Inject constructor(application: Application) : NewsFeedRepository {
 
     private val storage = VKPreferencesKeyValueStorage(application)
     private val token
