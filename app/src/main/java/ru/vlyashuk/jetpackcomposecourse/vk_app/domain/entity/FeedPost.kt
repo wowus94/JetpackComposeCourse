@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
+package ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity
 
 import android.os.Bundle
 import android.os.Parcelable

@@ -2,7 +2,7 @@ package ru.vlyashuk.jetpackcomposecourse.vk_app.navigation
 
 import android.net.Uri
 import com.google.gson.Gson
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
 
 sealed class Screen(
     val route: String

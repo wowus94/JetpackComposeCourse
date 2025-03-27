@@ -1,6 +1,6 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.news
 
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
 
 sealed class NewsFeedScreenState {
 

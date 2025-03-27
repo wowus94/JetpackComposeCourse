@@ -2,10 +2,10 @@ package ru.vlyashuk.jetpackcomposecourse.vk_app.data.mapper
 
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.model.CommentsResponseDto
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.model.NewsFeedResponseDto
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticType
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.PostComment
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticItem
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticType
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

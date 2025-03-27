@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
 import ru.vlyashuk.jetpackcomposecourse.ui.theme.JetpackComposeCourseTheme
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.AuthState
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.AuthState
 
 class MainActivity : ComponentActivity() {
 

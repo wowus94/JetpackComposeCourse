@@ -1,7 +1,7 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.comments
 
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.PostComment
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.PostComment
 
 sealed class CommentsScreenState {
 

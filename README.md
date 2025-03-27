@@ -1,5 +1,8 @@
 Приложение согласно курсу Jetpack Compose полный курс
 
+# 27.03.2025
+- рефакторинг. Clean Architecture
+
 # 26.03.2025
 - обработка ошибок (Exception handling)
 - использование coroutine flow в MainViewModel
