@@ -1,4 +1,4 @@
-package ru.vlyashuk.jetpackcomposecourse.vk_app.domain
+package ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity
 
 data class PostComment(
     val id: Long,

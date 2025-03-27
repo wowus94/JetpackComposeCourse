@@ -1,26 +1,25 @@
 package ru.vlyashuk.jetpackcomposecourse.vk_app.presentation.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vk.api.sdk.VKPreferencesKeyValueStorage
-import com.vk.api.sdk.auth.VKAccessToken
-import com.vk.api.sdk.auth.VKAuthenticationResult
 import kotlinx.coroutines.launch
-import ru.vlyashuk.jetpackcomposecourse.vk_app.data.repository.NewsFeedRepository
+import ru.vlyashuk.jetpackcomposecourse.vk_app.data.repository.NewsFeedRepositoryImpl
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.CheckAuthUseCase
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.GetAuthStateFlowUseCase
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = NewsFeedRepository(application)
+    private val repository = NewsFeedRepositoryImpl(application)
 
-    val authState = repository.authStateFlow
+    private val getAuthStateFlowUseCase = GetAuthStateFlowUseCase(repository)
+    private val checkAuthStateUseCase = CheckAuthUseCase(repository)
+
+    val authState = getAuthStateFlowUseCase()
 
     fun performAuthResult() {
         viewModelScope.launch {
-            repository.checkAuthState()
+            checkAuthStateUseCase()
         }
     }
 

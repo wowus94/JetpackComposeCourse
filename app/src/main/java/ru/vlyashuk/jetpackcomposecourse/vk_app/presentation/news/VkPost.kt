@@ -33,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import ru.vlyashuk.jetpackcomposecourse.R
 import ru.vlyashuk.jetpackcomposecourse.ui.theme.DarkRed
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.FeedPost
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticItem
-import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.StatisticType
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.FeedPost
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticItem
+import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.entity.StatisticType
 
 @Composable
 fun VkPostCard(
