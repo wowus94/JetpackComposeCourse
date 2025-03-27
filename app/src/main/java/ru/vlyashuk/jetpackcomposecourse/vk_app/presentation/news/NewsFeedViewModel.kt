@@ -19,8 +19,9 @@ import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.DeletePostUseCase
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.GetRecommendationsUseCase
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.LoadNextDataUseCase
 import ru.vlyashuk.jetpackcomposecourse.vk_app.extensions.mergeWith
+import javax.inject.Inject
 
-class NewsFeedViewModel(application: Application) : AndroidViewModel(application) {
+class NewsFeedViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
         Log.d("NewsFeedViewModel", "Exception caught by exception handler")

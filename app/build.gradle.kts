@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -52,6 +53,13 @@ android {
 }
 
 dependencies {
+
+    //Dagger2
+    implementation(libs.dagger2)
+    //Dagger2 кодогенератор
+    ksp(libs.dagger2.compiler)
+    //Dagger2 аннотации
+    ksp(libs.dagger2.android.processor)
 
     //Retrofit
     implementation(libs.retrofit)

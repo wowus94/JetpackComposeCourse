@@ -7,8 +7,9 @@ import kotlinx.coroutines.launch
 import ru.vlyashuk.jetpackcomposecourse.vk_app.data.repository.NewsFeedRepositoryImpl
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.CheckAuthUseCase
 import ru.vlyashuk.jetpackcomposecourse.vk_app.domain.usecases.GetAuthStateFlowUseCase
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private val repository = NewsFeedRepositoryImpl(application)
 

@@ -15,6 +15,8 @@ coil_version="3.0.4"
 vk_version="4.1.0"
 okHttpClient_version="4.12.0"
 retrofit_version="2.11.0"
+ksp_version ="2.1.10-1.0.29"
+dagger2_version = "2.55"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,6 +53,12 @@ okHttpClient = {group = "com.squareup.okhttp3", name = "okhttp", version.ref ="o
 httpLoggingInterceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref ="okHttpClient_version"}
 #Retrofit
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref ="retrofit_version"}
+#Dagger2
+dagger2 = { group = "com.google.dagger", name = "dagger", version.ref = "dagger2_version" }
+#Dagger2 кодогенратор
+dagger2-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger2_version" }
+#Dagger2 аннотации
+dagger2-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger2_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -58,3 +66,5 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 #kotlin-parcelize
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+#ksp
+ksp = {id = "com.google.devtools.ksp", version.ref ="ksp_version"}
